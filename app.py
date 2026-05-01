@@ -1,5 +1,6 @@
 import streamlit as st
 from data import *
+from footer import footer
 
 # Judul Dashboard
 def judul():
@@ -25,6 +26,7 @@ if menu == "Home":
     bar_chart1(df_filtered)
     bar_chart2(df_filtered)
     map_chart(df_filtered, year)
+    footer()
 
 elif menu == "Halaman Data":
     judul()
@@ -33,3 +35,4 @@ elif menu == "Halaman Data":
     location = select_location(df)
     df_filtered = filter_data(df, year, location)
     show_data(df_filtered)
+    footer()
