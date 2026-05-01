@@ -1,5 +1,5 @@
 import streamlit as st
-from data import show_data, select_year, load_data, filter_data, kolom, pie_chart1
+from data import *
 
 # Judul Dashboard
 def judul():
@@ -13,18 +13,23 @@ menu = st.sidebar.radio("Pilih Halaman", ["Home","Halaman Data"])
 #Halaman Home
 if menu == "Home":
     judul()
-    #Pilih Tahun
-    year = select_year()
+
     #Load & Filter Data
     df = load_data()
-    df_filtered = filter_data(df, year)
+    year = select_year()
+    location = select_location(df)
+    df_filtered = filter_data(df, year, location)
+    #Kolom 1
     kolom(df_filtered)
     pie_chart1(df_filtered)
+    bar_chart1(df_filtered)
+    bar_chart2(df_filtered)
+    map_chart(df_filtered, year)
 
 elif menu == "Halaman Data":
     judul()
-    year = select_year()
-    #Load & Filter Data
     df = load_data()
-    df_filtered = filter_data(df, year)
+    year = select_year()
+    location = select_location(df)
+    df_filtered = filter_data(df, year, location)
     show_data(df_filtered)
